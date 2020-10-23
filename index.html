@@ -18,9 +18,9 @@
 </nav>
 <!-- main display area -->
   <!-- search bar -->
-    <main class="container mt-3">
+    <main class="container-fluid m-3">
       <div class="row">
-      <div class="col-4">
+      <div class="span2">
         <div class="card" >             
           <div class="input-group mx-auto">
             <input type="text" class="form-control" id="city-input" placeholder="Enter city" aria-label="city" aria-describedby="basic-addon2">
@@ -34,11 +34,19 @@
         </div>
       </div>
       <!--  main forecast display -->
-      <div class="col-8">  
+      <div class="span8">  
           <div class="card d-none" id="forecast-display">
             <div class="card-body">
               <h5 class="card-title text-center" id="city-name-display"></h5>
+              <div class="row mx-auto" id="forecast-curret">
+
+              </div>
               <div class="row mx-auto">
+                <div class="card mx-auto">
+                  <div class="card-body">
+                    <h5 class="card-title text-center" id="day0"></h5>
+                  </div>              
+                </div>
                 <div class="card mx-auto">
                   <div class="card-body">
                     <h5 class="card-title text-center" id="day1"></h5>
@@ -59,13 +67,7 @@
                     <h5 class="card-title text-center" id="day4"></h5>
                   </div>              
                 </div>
-                <div class="card mx-auto">
-                  <div class="card-body">
-                    <h5 class="card-title text-center" id="day5"></h5>
-                  </div>              
-                </div>
-               </div>
-    
+        </div>  
         </div> 
       </div>   
     </main>

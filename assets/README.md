@@ -32,7 +32,7 @@ THEN I am presented with the last searched city forecast
 
 The following image demonstrates the application functionality:
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![weather dashboard demo](./06-server-side-apis-homework-demo.png)
 
 ## Review
 
