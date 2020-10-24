@@ -1,7 +1,7 @@
 $(document).ready(function() {
 var cityName = "";
 
-var userEntry = JSON.parse(localStorage.getItem("userEntry")) || [];
+var userEntry = JSON.parse(localStorage.getItem("cityEntry")) || [];
 // DONE gather user input and call api
 // DONE store data to an array
 // DONE save array to local storage
@@ -9,22 +9,13 @@ var userEntry = JSON.parse(localStorage.getItem("userEntry")) || [];
 // DONE populate DOM with information after button clicked
 
 
-function populatePastSearches(){
-  var loopLength = 10;
-  if (userEntry.length < 10){
-    loopLength = userEntry.length
-  }  
-  for (i = 0; i < loopLength; i++){
-    $("#city-list").prepend("<li class=\"list-group-item search-list\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
-  }
-}
 function initializePastSearches(){
   var loopLength = 10;
   if (userEntry.length < 10){
     loopLength = userEntry.length
   }  
   for (i = 0; i < loopLength; i++){
-    $("#city-list").append("<li class=\"list-group-item search-list\" id=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
+    $("#city-list").append("<li class=\"list-group-item search-list\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
   }
 }
 
@@ -35,33 +26,20 @@ if (userEntry.length > 0){
 initializePastSearches();
 }
 
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-// HELP
-$("#city-list li").on("click", function(event){
+
+$("#city-list").on("click", ".list-group-item", function(event){
   
   console.log("i clicked you")
- console.log($(this).find)
-  // apiCall($(this).getAttribute('data-name'));
+ console.log($(this))
+ var dataName = $(this).attr("data-name")
+ console.log(dataName);
+  apiCall($(this).attr('data-name'));
   
 })
 
 // want to add functionality that doenst allow duplicates
 $("#search-button").click(function(){  
-  if (!userEntry.includes($("#city-input").val().trim())){
-    userEntry.splice(0,0, $("#city-input").val().trim());
-    localStorage.setItem("userEntry", JSON.stringify(userEntry));
-    $("#city-list").prepend("<li class=\"list-group-item\" data-name=\""+ userEntry[0] + "\">" + userEntry[0] + "</li>");
-  }  
-    apiCall($("#city-input").val().trim())
+  apiCall($("#city-input").val().trim())
 });
 
 
@@ -76,15 +54,21 @@ var uvIndex = "";
 var forecastDate = "";
 // all api calls
 function apiCall(userSelection){
+
   cityName = userSelection
   var weatherAppUrl1 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=ca202c6ae2ceb6ff80e75b7ff67eaf7d";
   
-    $.ajax({
-      url: weatherAppUrl1,
-      method: "GET"
-    }).then(function(response) {
-
-      
+  $.ajax({
+    url: weatherAppUrl1,
+    method: "GET"
+  }).then(function(response) {
+    if (!userEntry.includes($("#city-input").val().trim())){
+      userEntry.splice(0,0, $("#city-input").val().trim());
+      localStorage.setItem("cityEntry", JSON.stringify(userEntry));
+      $("#city-list").prepend("<li class=\"list-group-item\" data-name=\""+ userEntry[0] + "\">" + userEntry[0] + "</li>");
+    }  
+    
+    
       // grabbing latitude and longitude out of first api
       longitude = response.city.coord.lon.toString();
       latitude = response.city.coord.lat.toString();
@@ -128,9 +112,10 @@ function apiCall(userSelection){
         $("#forecast-current").append("<h5 class=\"forecast\">Current Temperature: " + currentTemp + String.fromCharCode(176) + "F</h5>");
         $("#forecast-current").append("<h5 class=\"forecast\">Current Wind Speed: " + currentWind + " MPH</h5>");
         if(currentUv > 5){
-          $("#forecast-current").append("<h5 class=\"forecast text-danger\" >Current UV Index : " + currentUv + " MPH</h5>");
+          $("#forecast-current").append("<h5 class=\"forecast text-danger\" >Current UV Index : " + currentUv + " </h5>");
+          return
         }
-        if(currentUv > 2){
+        if(currentUv > 2 ){
           $("#forecast-current").append("<h5 class=\"forecast text-warning\" >Current UV Index : " + currentUv + " MPH</h5>");
         }
         else{
@@ -164,6 +149,10 @@ function apiCall(userSelection){
                       }
                     }                
       });
+    }).catch(function(){
+      console.log("failed repsonse")
+
+      return
     });
   };
   
