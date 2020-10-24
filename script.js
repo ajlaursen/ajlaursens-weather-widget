@@ -57,6 +57,8 @@ function apiCall(userSelection){
       url: weatherAppUrl1,
       method: "GET"
     }).then(function(response) {
+
+      
       // grabbing latitude and longitude out of first api
       longitude = response.city.coord.lon.toString();
       latitude = response.city.coord.lat.toString();
@@ -137,7 +139,7 @@ function apiCall(userSelection){
                     }                
       });
     });
-  }
+  };
   
   
   apiCall(userEntry[0]);
