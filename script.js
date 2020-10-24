@@ -28,8 +28,12 @@ function initializePastSearches(){
   }
 }
 
+function renderPage(){
+if (userEntry.length > 0){
+  apiCall(userEntry[0]);
+}
 initializePastSearches();
-
+}
 // need help with these grabbing proper data-id
 
 $("li").click(function(){
@@ -151,4 +155,4 @@ function apiCall(userSelection){
   };
   
   
-  apiCall(userEntry[0]);
+renderPage();
