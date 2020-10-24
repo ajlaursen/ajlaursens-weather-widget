@@ -18,7 +18,7 @@ function initializePastSearches(){
     $("#city-list").append("<li class=\"list-group-item search-list\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
   }
 }
-
+// intial render of page
 function renderPage(){
 if (userEntry.length > 0){
   apiCall(userEntry[0]);
@@ -26,13 +26,10 @@ if (userEntry.length > 0){
 initializePastSearches();
 }
 
-
+// calling api based off of where the user clicks
 $("#city-list").on("click", ".list-group-item", function(event){
   
   console.log("i clicked you")
- console.log($(this))
- var dataName = $(this).attr("data-name")
- console.log(dataName);
   apiCall($(this).attr('data-name'));
   
 })
@@ -62,7 +59,7 @@ function apiCall(userSelection){
     url: weatherAppUrl1,
     method: "GET"
   }).then(function(response) {
-    if (!userEntry.includes($("#city-input").val().trim())){
+    if (!userEntry.includes($("#city-input").val().trim()) && $("#city-input").val().trim() != ""){
       userEntry.splice(0,0, $("#city-input").val().trim());
       localStorage.setItem("cityEntry", JSON.stringify(userEntry));
       $("#city-list").prepend("<li class=\"list-group-item\" data-name=\""+ userEntry[0] + "\">" + userEntry[0] + "</li>");
@@ -113,9 +110,9 @@ function apiCall(userSelection){
         $("#forecast-current").append("<h5 class=\"forecast\">Current Wind Speed: " + currentWind + " MPH</h5>");
         if(currentUv > 5){
           $("#forecast-current").append("<h5 class=\"forecast text-danger\" >Current UV Index : " + currentUv + " </h5>");
-          return
+          
         }
-        if(currentUv > 2 ){
+        else if(currentUv > 2 ){
           $("#forecast-current").append("<h5 class=\"forecast text-warning\" >Current UV Index : " + currentUv + " MPH</h5>");
         }
         else{
@@ -126,33 +123,34 @@ function apiCall(userSelection){
         // grabs info and buids dom for five day
         var responseDaily = response.daily
         for (i = 0; i < responseDaily.length; i ++){
-                      icon = "http://openweathermap.org/img/wn/" + responseDaily[i].weather[0].icon + "@2x.png";
-                      temperatureHigh = Math.floor(responseDaily[i].temp.max);
-                      temperatureLow = Math.floor(responseDaily[i].temp.min);
-                      humidity = responseDaily[i].humidity;
-                      windSpeed = Math.floor(responseDaily[i].wind_speed);
-                      uvIndex = responseDaily[i].uvi;
-                      altDescription = responseDaily[i].weather[0].description;
-                      $("#day" + i).append("<img src=" + icon +" class=\"forecast\" alt=\"" +altDescription+ "\"></img>");
-                      $("#day" + i).append("<div class=\"forecast\"> Temp: " + temperatureHigh + "/" + temperatureLow + String.fromCharCode(176) + "F</div>");
-                      $("#day" + i).append("<div class=\"forecast\"> Humidity: " + humidity + "%</div>");
-                      $("#day" + i).append("<div class=\"forecast\"> Windspeed: " + windSpeed + " MPH</div>");
-                      $("#day" + i).append("<div class=\"forecast\"> UV Index: " + uvIndex + "</div>");
-                      if(uvIndex > 5){
-                        $("#day" + i).append("<h5 class=\"forecast text-danger\" >Current UV Index : " + uvIndex + "</h5>");
-                      }
-                      if(uvIndex > 2){
-                        $("#day" + i).append("<h5 class=\"forecast text-warning\" >Current UV Index : " + uvIndex + "</h5>");
-                      }
-                      else{
-                        $("#day" + i).append("<h5 class=\"forecast text-success\" >Current UV Index : " + uvIndex + "</h5>");
-                      }
-                    }                
+          icon = "http://openweathermap.org/img/wn/" + responseDaily[i].weather[0].icon + "@2x.png";
+          temperatureHigh = Math.floor(responseDaily[i].temp.max);
+          temperatureLow = Math.floor(responseDaily[i].temp.min);
+          humidity = responseDaily[i].humidity;
+          windSpeed = Math.floor(responseDaily[i].wind_speed);
+          uvIndex = responseDaily[i].uvi;
+          altDescription = responseDaily[i].weather[0].description;
+          $("#day" + i).append("<img src=" + icon +" class=\"forecast\" alt=\"" +altDescription+ "\"></img>");
+          $("#day" + i).append("<div class=\"forecast\"> Temp: " + temperatureHigh + "/" + temperatureLow + String.fromCharCode(176) + "F</div>");
+          $("#day" + i).append("<div class=\"forecast\"> Humidity: " + humidity + "%</div>");
+          $("#day" + i).append("<div class=\"forecast\"> Windspeed: " + windSpeed + " MPH</div>");
+          $("#day" + i).append("<div class=\"forecast\"> UV Index: " + uvIndex + "</div>");
+          if(uvIndex > 5){
+            $("#day" + i).append("<h5 class=\"forecast text-danger\" >Current UV Index : " + uvIndex + "</h5>");
+          }
+          else if(uvIndex > 2){
+            $("#day" + i).append("<h5 class=\"forecast text-warning\" >Current UV Index : " + uvIndex + "</h5>");
+          }
+          else{
+            $("#day" + i).append("<h5 class=\"forecast text-success\" >Current UV Index : " + uvIndex + "</h5>");
+          }
+          console.log("string of stuff")
+          console.log(response.daily);
+          console.log(responseDaily)
+        }                
       });
     }).catch(function(){
-      console.log("failed repsonse")
-
-      return
+        return
     });
   };
   
