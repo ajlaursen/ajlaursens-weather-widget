@@ -1,4 +1,4 @@
-
+$(document).ready(function() {
 var cityName = "";
 
 var userEntry = JSON.parse(localStorage.getItem("userEntry")) || [];
@@ -15,7 +15,7 @@ function populatePastSearches(){
     loopLength = userEntry.length
   }  
   for (i = 0; i < loopLength; i++){
-    $("#city-list").prepend("<li class=\"list-group-item\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
+    $("#city-list").prepend("<li class=\"list-group-item search-list\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
   }
 }
 function initializePastSearches(){
@@ -24,7 +24,7 @@ function initializePastSearches(){
     loopLength = userEntry.length
   }  
   for (i = 0; i < loopLength; i++){
-    $("#city-list").append("<li class=\"list-group-item\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
+    $("#city-list").append("<li class=\"list-group-item search-list\" id=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
   }
 }
 
@@ -34,10 +34,23 @@ if (userEntry.length > 0){
 }
 initializePastSearches();
 }
-// need help with these grabbing proper data-id
 
-$("li").click(function(){
-  apiCall($(this)[0].getAttribute('data-name'));
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+// HELP
+$("#city-list li").on("click", function(event){
+  
+  console.log("i clicked you")
+ console.log($(this).find)
+  // apiCall($(this).getAttribute('data-name'));
   
 })
 
@@ -99,7 +112,7 @@ function apiCall(userSelection){
       // using latitude and longitude from first api to input into second api to grab all weather info
       $.ajax({
         url: weatherAppUrl2,
-        method: "GET"
+        method: "GET",
       }).then(function(response){
         $(".card").removeClass("d-none");
         
@@ -156,3 +169,4 @@ function apiCall(userSelection){
   
   
 renderPage();
+});
