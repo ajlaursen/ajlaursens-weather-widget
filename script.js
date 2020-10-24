@@ -18,8 +18,17 @@ function populatePastSearches(){
     $("#city-list").prepend("<li class=\"list-group-item\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
   }
 }
-populatePastSearches();
+function initializePastSearches(){
+  var loopLength = 10;
+  if (userEntry.length < 10){
+    loopLength = userEntry.length
+  }  
+  for (i = 0; i < loopLength; i++){
+    $("#city-list").append("<li class=\"list-group-item\" data-name=\""+ userEntry[i] + "\">" + userEntry[i] + "</li>");
+  }
+}
 
+initializePastSearches();
 
 // need help with these grabbing proper data-id
 
