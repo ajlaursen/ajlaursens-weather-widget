@@ -12,4 +12,4 @@ https://ajlaursen.github.io/homework-6-laursen/
 
 * UV index changes color based on severity
 
-![screenshot](assets/screenshot.png)
+![screenshot](assets/IMG/screenshot.png)
