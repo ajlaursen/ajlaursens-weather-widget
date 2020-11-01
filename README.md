@@ -1,7 +1,9 @@
 # Weather Widget
 # homework-6-laursen
 
-https://ajlaursen.github.io/homework-6-laursen/
+* Live Site: https://ajlaursen.github.io/ajlaursens-weather-widget/
+
+* Repo: https://github.com/ajlaursen/ajlaursens-weather-widget
 
 * app gives weather information 
 
@@ -13,4 +15,8 @@ https://ajlaursen.github.io/homework-6-laursen/
 
 * UV index changes color based on severity
 
+* Technologies: HTML, CSS, Jquery, JS, Bootstrap, API calls
+
 ![screenshot](assets/IMG/screenshot.png)
+
+* Contact: Alex Laursen - Ajlaursen@aol.com
