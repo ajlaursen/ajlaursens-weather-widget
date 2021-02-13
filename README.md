@@ -1,24 +1,31 @@
+
 # Weather Widget
-# homework-6-laursen
 
-* Live Site: https://ajlaursen.github.io/ajlaursens-weather-widget/
+## Table of Contents
+[Description](#description)  
+[Installation](#Installation)  
+[Test](#Testing)  
+[Project Links](#live-Site-and-Repo)  
+[License](#License)  
+[Contributors](#Contributors)  
 
-* Repo: https://github.com/ajlaursen/ajlaursens-weather-widget
+## Description
+* A weather widget that allows you to get a current and five day forecast for a city name. The last searched city will automatically display on refresh. Technologies used for this app are HTML, CSS, Bootstrap, Javascript, and local storage
 
-* app gives weather information 
+## Installation
+* Use live link
 
-* enter a city to recieve weather info for that city
+## Testing
+* No testing available
 
-* creates a list of the last ten searches.
+## Live Site and Repo
+* [live Site](https://ajlaursen.github.io/ajlaursens-weather-widget/)
+* [Repo](https://github.com/ajlaursen/ajlaursens-weather-widget)
 
-* on load it loads last searched city if site has been used
+## License
+* [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-* UV index changes color based on severity
-
-* Technologies: HTML, CSS, Jquery, JS, Bootstrap, API calls
+## Contributors
+* Contributor: [Alex Laursen](https://github.com/ajlaursen) Email: [contact@ajlaursen.codes](mailto:contact@ajlaursen.codes)
 
 ![screenshot](assets/IMG/screenshot.png)
-
-* Contact: Alex Laursen - Ajlaursen@aol.com
-
-* License: [License](LICENSE)
