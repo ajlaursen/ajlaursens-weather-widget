@@ -29,7 +29,7 @@ initializePastSearches();
 // calling api based off of where the user clicks
 $("#city-list").on("click", ".list-group-item", function(event){
   
-  console.log("i clicked you")
+  
   apiCall($(this).attr('data-name'));
   
 })
@@ -144,9 +144,6 @@ function apiCall(userSelection){
           else{
             $("#day" + i).append("<h5 class=\"forecast text-success\" >Current UV Index : " + uvIndex + "</h5>");
           }
-          console.log("string of stuff")
-          console.log(response.daily);
-          console.log(responseDaily)
         }                
       });
     }).catch(function(){
